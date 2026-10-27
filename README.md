@@ -17,64 +17,72 @@
 <a name="-versión-en-español"></a>
 ## 👨‍💻 Perfil Profesional
 
-Ingeniero de Sistemas (UIS) con **más de 4 años de experiencia** diseñando, optimizando y escalando sistemas transaccionales y arquitecturas de datos de alto volumen en sectores críticos como servicios públicos, banca/finanzas y tecnología.
+Ingeniero de Sistemas (UIS) con **más de 4 años de experiencia** diseñando, optimizando y asegurando sistemas transaccionales críticos y almacenes de datos de alto volumen[cite: 1]. Cuento con trayectoria comprobada en sectores de alta exigencia transaccional como servicios públicos, banca, fintech y tecnología[cite: 1, 6].
 
-Combino una sólida especialización en **Ingeniería de Bases de Datos (Oracle PL/SQL, SQL Server, Tuning CBO)** con **Desarrollo Backend (.NET 8, Python)**. Aplico patrones como **CQRS**, **Transactional Outbox** y **Change Data Capture (CDC)** para eliminar cuellos de botella de rendimiento, reducir latencias en procesos analíticos y masivos (facturación electrónica, pipelines de extracción y cierres contables) y asegurar la consistencia transaccional bajo alta concurrencia.
+Combino una especialización profunda en **Ingeniería de Bases de Datos (Oracle PL/SQL, SQL Server, Tuning CBO, Pruebas Unitarias utPLSQL)**[cite: 1, 2, 6] con **Arquitectura Backend (.NET 8, Python)**[cite: 1, 3, 5]. Implemento patrones como **CQRS**, **Transactional Outbox**, **Change Data Capture (CDC)** y **procesamiento batch resiliente en memoria (PGA)** para suprimir cuellos de botella de E/S, blindar la consistencia ACID de motores financieros y acelerar flujos analíticos y operativos[cite: 3, 5, 6].
 
 ---
 
 ## 🛠️ Portafolio de Servicios y Especialización
 
-* **⚡ Optimización y Tuning de Bases de Datos (Oracle / SQL Server):** Diagnóstico profundo de planes de ejecución (`DBMS_XPLAN`), optimización de costos en el CBO, particionamiento físico de grandes volúmenes, índices de cobertura y procesamiento vectorizado por lotes en PL/SQL (`BULK COLLECT` / `FORALL`).
-* **🔄 Arquitecturas de Datos Orientadas a Eventos:** Desacoplamiento de motores transaccionales (OLTP) de cargas analíticas mediante **CQRS**, **Transactional Outbox**, mensajería durable con **RabbitMQ** y proyecciones en bases documentales (**MongoDB**).
-* **🐍 Pipelines de Datos, CDC & Automatización con Python:** Construcción de flujos ETL/ELT con validación estricta de esquemas (**Pydantic v2**), motores de Change Data Capture para tracking de estados y auditoría histórica, y automatización de reportes (HTML responsivo / Excel).
-* **⚙️ Backend Empresarial & Tiempo Real:** Servicios y workers asíncronos en **.NET 8 (C#)**, servidores de comunicación bidireccional de baja latencia vía **WebSockets**, y sistemas de facturación electrónica.
-* **🚀 Gobierno Técnico & Versionamiento SQL:** Control de versiones de bases de datos (**Git Flow**, **Redgate**), contenedores reproducibles con **Docker** y documentación técnica exhaustiva.
+* **⚡ Arquitectura Transaccional y SQL Tuning (Oracle / SQL Server):** Diagnóstico profundo con `DBMS_XPLAN`[cite: 4, 6], afinamiento de reglas de indexación (**E-S-R-O / Index-Only Access**)[cite: 6], particionamiento físico de grandes tablas[cite: 4] y procesamiento masivo vectorizado en memoria PGA con `BULK COLLECT` y `FORALL ... SAVE EXCEPTIONS`[cite: 4, 6].
+* **🧪 Aseguramiento de Calidad y Automatización en Base de Datos:** Pruebas unitarias automatizadas y declarativas para PL/SQL con **utPLSQL v3**[cite: 6], segregación física de segmentos en **tablespaces dedicados**[cite: 6] y orquestación de tareas desatendidas con **`DBMS_SCHEDULER`**[cite: 6].
+* **🔄 Arquitecturas de Datos Desacopladas y Tiempo Real:** Protección de motores relacionales OLTP frente a degradación analítica mediante **CQRS**, **Transactional Outbox**, mensajería distribuida con **RabbitMQ** y proyecciones optimizadas en **MongoDB**[cite: 3].
+* **🐍 Pipelines de Datos, CDC y Automatización con Python:** Modelado de datos estricto con validación tipada (**Pydantic v2**)[cite: 5], detección incremental de cambios (CDC) con retención de auditoría histórica y distribución multicanal automatizada (Excel / SMTP)[cite: 5].
+* **⚙️ Backend Empresarial y Servicios Críticos:** Microservicios y Worker Services asíncronos en **.NET 8 (C#)**[cite: 3], canales de comunicación bidireccional en tiempo real mediante **WebSockets**[cite: 1, 2] y soporte a facturación masiva[cite: 1].
 
 ---
 
 ## 📌 Proyectos Destacados (Portafolio Técnico)
 
-### 1. ⚡ [Database Performance Benchmarking & Refactoring Suite](https://github.com/DerekMazino/db-performance-benchmark)
-> **Laboratorio reproducible de optimización SQL y tuning físico sobre un libro mayor transaccional de 10,000,000 de registros.**
-* **Tecnologías:** `Oracle 23ai Free` | `PL/SQL` | `CBO Tuning` | `Interval Partitioning` | `Docker`
-* **Métricas e Impacto Empírico:**
-  * **Sargabilidad e Índices de Cobertura:** Reducción de latencia de consulta de **13.60 s a 0.01 s (1,360x más rápido)** y disminución del I/O lógico en memoria RAM en un **99.95%** (de 157,000 a 67 bloques).
-  * **Batch Processing Vectorizado en PL/SQL:** Reemplazo de cursores fila-por-fila por `BULK COLLECT LIMIT 5000` + `FORALL ... SAVE EXCEPTIONS`, logrando **2.39x mayor velocidad** y un **99.98% menos context switching** entre motores.
-  * **Partition Pruning Físico:** Implementación de particionamiento mensual automático, acelerando reportes analíticos **9.4x (de 10.56 s a 1.12 s)** y reduciendo el I/O de disco en un **91.3%**.
+### 1. 💳 [Core Settlement & Cashback Engine (Oracle 23ai)](https://github.com/DerekMazino/fintech-settlement-engine)
+> **Backend transaccional de conciliación, liquidación masiva y cashback para pasarelas fintech.**
+* **Tecnologías:** `Oracle 23ai Free` | `PL/SQL` | `utPLSQL v3` | `CBO Tuning (E-S-R-O)` | `DBMS_SCHEDULER` | `Docker`[cite: 6]
+* **Logros e Implementación Técnica:**
+  * **Optimización CBO (Index-Only Access):** Diseño del índice compuesto `idx_trx_riesgos_esro` bajo la regla **E-S-R-O**[cite: 6]. Logró acceso directo vía `INDEX RANGE SCAN` sin visitas a tabla (`TABLE ACCESS BY INDEX ROWID: 0`) y resolución en **0.01 s con solo 67 buffers**, eliminando operaciones de ordenamiento mediante `SORT GROUP BY NOSORT`[cite: 6].
+  * **Batching Resiliente en Memoria (PGA):** Procesamiento en paquetes de 1,000 registros mediante cursores explícitos y `FORALL ... SAVE EXCEPTIONS`[cite: 6]. Auditoría atómica de errores (`ORA-24381` / `log_liquidacion_errores`) y segregación determinista en una pasada entre estados `LIQUIDADO` y `RECHAZADO` vía `SQL%BULK_ROWCOUNT`[cite: 6].
+  * **Infraestructura y QA:** Segregación física de I/O en tablespaces dedicados (`TS_FINTECH_DATA` vs `TS_FINTECH_IDX`)[cite: 6], automatización de jobs recurrentes con `DBMS_SCHEDULER`[cite: 6] y suite declarativa de pruebas unitarias automatizadas con **utPLSQL v3**[cite: 6].
 
-### 2. 🔄 [Event-Driven Read Model Sync (CQRS & Transactional Outbox)](https://github.com/DerekMazino/event-driven-cqrs-sync)
-> **Arquitectura desacoplada orientada a eventos para proteger un motor OLTP financiero de alta concurrencia frente al bloqueo por consultas pesadas.**
-* **Tecnologías:** `Oracle 23ai` | `.NET 8 Worker Services` | `RabbitMQ (AMQP)` | `MongoDB 7.0` | `Docker`
-* **Métricas e Impacto Empírico:**
-  * **Entrega Garantizada sin Bloqueos Distribuidos:** Implementación de **Transactional Outbox** atómico en PL/SQL y workers concurrentes en `.NET 8` (`SELECT FOR UPDATE SKIP LOCKED`).
-  * **Proyecciones Idempotentes en Lectura:** Sincronización asíncrona de 50k préstamos y 600k cuotas hacia documentos pre-agregados en **MongoDB**.
-  * **Diferencial de Rendimiento:** Reducción de latencia de lectura en **más del 99% (de 850 ms en uniones relacionales a 1–5 ms en MongoDB)**, con aislamiento total del motor transaccional ante contención de bloqueos.
+### 2. ⚡ [Database Performance Benchmarking & Refactoring Suite](https://github.com/DerekMazino/db-performance-benchmark)
+> **Laboratorio reproducible de optimización SQL sobre un libro mayor financiero de 10,000,000 de registros.**
+* **Tecnologías:** `Oracle 23ai Free` | `PL/SQL` | `CBO Tuning` | `Interval Partitioning` | `Docker`[cite: 4]
+* **Impacto y Métricas Empíricas:**
+  * **Sargabilidad y Covering Index:** Reducción de latencia en consultas transaccionales de **13.60 s a 0.01 s (1,360x más rápido)** y recorte del I/O lógico en memoria RAM en un **99.95%** (de 157,000 a 67 bloques)[cite: 4].
+  * **Eliminación de Context Switches:** Refactorización de cursores fila a fila (*row-by-row*) a lotes vectorizados con `BULK COLLECT LIMIT 5000` + `FORALL ... SAVE EXCEPTIONS`, alcanzando **2.39x mayor throughput** y un **99.98% menos context switches** entre PL/SQL y SQL[cite: 4].
+  * **Partition Pruning:** Implementación de particionamiento mensual por intervalos (`INTERVAL`), acelerando reportes analíticos masivos **9.4x (de 10.56 s a 1.12 s)** con un **91.3% menos I/O de segmento**[cite: 4].
 
-### 3. 🏠 [Real Estate Investment Monitor & CDC Engine](https://github.com/DerekMazino/real-estate-monitor)
+### 3. 🔄 [Event-Driven Read Model Sync (CQRS & Transactional Outbox)](https://github.com/DerekMazino/event-driven-cqrs-sync)
+> **Arquitectura orientada a eventos para proteger un motor financiero OLTP frente a degradación por consultas pesadas.**
+* **Tecnologías:** `Oracle 23ai` | `.NET 8 Worker Services` | `RabbitMQ (AMQP)` | `MongoDB 7.0` | `Docker`[cite: 3]
+* **Impacto y Métricas Empíricas:**
+  * **Entrega Garantizada sin Bloqueos Distribuidos:** Implementación de **Transactional Outbox** dentro de los mismos límites ACID de la base de datos y consumo concurrente en `.NET 8` mediante `SELECT FOR UPDATE SKIP LOCKED` sin bloqueos entre instancias[cite: 3].
+  * **Proyecciones Asíncronas en Memoria:** Proyección idempotente sobre **MongoDB 7.0** usando `ReplaceOneAsync` a partir de un modelo relacional 3NF (50,000 préstamos y 600,000 cuotas)[cite: 3].
+  * **Diferencial de Rendimiento:** Reducción de latencia de lectura de **850 ms a 1–5 ms (>99% de mejora)**, liberando al 100% el motor OLTP de contención de locks en buffer[cite: 3].
+
+### 4. 🏠 [Real Estate Investment Monitor & CDC Engine](https://github.com/DerekMazino/real-estate-monitor)
 > **Pipeline automatizado de extracción, Change Data Capture (CDC) y detección de oportunidades de inversión inmobiliaria en Colombia.**
-* **Tecnologías:** `Python 3.11+` | `Pydantic v2` | `SQLite Relational` | `CDC Pattern` | `SMTP / Excel`
-* **Arquitectura y Capacidades de Negocio:**
-  * **Motor CDC para Variaciones de Precio:** Detección de nuevas propiedades y registro histórico de rebajas de precio con cálculo porcentual de descuento almacenado en `price_history`.
-  * **Ingeniería de Datos con Validación Estricta:** Ingesta y normalización de listados desde múltiples portales inmobiliarios (Finca Raíz, MetroCuadrado, Ciencuadras) mediante modelos **Pydantic v2** y deduplicación estricta de publicaciones.
-  * **Distribución Multicanal Desacoplada:** Generación automática de planillas analíticas estructuradas en `.xlsx` y envíos de alertas programadas vía correo electrónico (HTML responsivo vía SMTP).
+* **Tecnologías:** `Python 3.11+` | `Pydantic v2` | `SQLite Relational` | `CDC Pattern` | `SMTP / Excel`[cite: 5]
+* **Capacidades Implementadas:**
+  * **Motor CDC para Variaciones de Precios:** Algoritmo de detección de estados que identifica nuevas publicaciones y rastrea rebajas históricas con cálculo de descuento porcentual en `price_history`[cite: 5].
+  * **Modelado Estricto y Normalización:** Validación de esquemas de datos heterogéneos (Finca Raíz, MetroCuadrado, Ciencuadras) mediante modelos **Pydantic v2** y deduplicación estricta de registros[cite: 5].
+  * **Reportería y Alertas Desacopladas:** Generación automática de planillas consolidadas en formato `.xlsx` con hipervínculos directos y despachador extensible de alertas por correo HTML vía SMTP[cite: 5].
 
-### 4. 🚧 Próximo Proyecto: Sistema POS Agnóstico al Negocio *(En Análisis y Planeación)*
+### 5. 🚧 En Desarrollo: Sistema POS Agnóstico al Negocio *(Planeación & Arquitectura)*
 > **Arquitectura de Punto de Venta (POS) multi-nicho orientada a la adaptabilidad de dominio y alta fiabilidad transaccional.**
-* **Enfoque Técnico:** Modelado de dominio con límites desacoplados y esquemas de metadatos dinámicos para que el núcleo de facturación, impuestos, inventario y sincronización opere sobre retail, servicios o gastronomía sin alterar la lógica de negocio base.
+* **Enfoque:** Modelado modular con límites desacoplados y esquemas de metadatos dinámicos, permitiendo que el núcleo transaccional (inventario, facturación, esquemas tributarios y sincronización) funcione sobre retail, servicios o gastronomía sin modificar la lógica base.
 
 ---
 
-## 💻 Stack Tecnológico y Herramientas
+## 💻 Stack Tecnológico
 
 <div align="center">
 
-| Especialidad | Tecnologías |
+| Área | Tecnologías |
 | :--- | :--- |
 | **Bases de Datos Relacionales** | ![Oracle 23ai / 19c](https://img.shields.io/badge/Oracle_Database-F80000?style=flat-square&logo=oracle&logoColor=white) ![SQL Server](https://img.shields.io/badge/SQL_Server-CC2927?style=flat-square&logo=microsoft-sql-server&logoColor=white) ![SQLite](https://img.shields.io/badge/SQLite-003B57?style=flat-square&logo=sqlite&logoColor=white) ![MySQL](https://img.shields.io/badge/MySQL-4479A1?style=flat-square&logo=mysql&logoColor=white) |
 | **NoSQL & Mensajería** | ![MongoDB](https://img.shields.io/badge/MongoDB_7.0-47A248?style=flat-square&logo=mongodb&logoColor=white) ![RabbitMQ](https://img.shields.io/badge/RabbitMQ_AMQP-FF6600?style=flat-square&logo=rabbitmq&logoColor=white) ![WebSockets](https://img.shields.io/badge/WebSockets-010101?style=flat-square) |
-| **Lenguajes de Programación** | ![PL/SQL](https://img.shields.io/badge/PL%2FSQL-F80000?style=flat-square&logo=oracle&logoColor=white) ![SQL](https://img.shields.io/badge/SQL-003B57?style=flat-square&logo=postgresql&logoColor=white) ![Python](https://img.shields.io/badge/Python_3.11+-3776AB?style=flat-square&logo=python&logoColor=white) ![C#](https://img.shields.io/badge/C%23-239120?style=flat-square&logo=c-sharp&logoColor=white) ![Java](https://img.shields.io/badge/Java-007396?style=flat-square&logo=java&logoColor=white) |
-| **Frameworks & Modelado** | ![.NET 8](https://img.shields.io/badge/.NET_8_Worker_Services-512BD4?style=flat-square&logo=dotnet&logoColor=white) ![Pydantic v2](https://img.shields.io/badge/Pydantic_v2-E92063?style=flat-square&logo=pydantic&logoColor=white) ![Pandas / OpenPyXL](https://img.shields.io/badge/Excel_Data_Pipelines-217346?style=flat-square&logo=microsoft-excel&logoColor=white) |
+| **Lenguajes** | ![PL/SQL](https://img.shields.io/badge/PL%2FSQL-F80000?style=flat-square&logo=oracle&logoColor=white) ![SQL](https://img.shields.io/badge/SQL-003B57?style=flat-square&logo=postgresql&logoColor=white) ![C#](https://img.shields.io/badge/C%23-239120?style=flat-square&logo=c-sharp&logoColor=white) ![Python](https://img.shields.io/badge/Python_3.11+-3776AB?style=flat-square&logo=python&logoColor=white) ![Java](https://img.shields.io/badge/Java-007396?style=flat-square&logo=java&logoColor=white) |
+| **Testing, Frameworks & Modelado** | ![utPLSQL v3](https://img.shields.io/badge/utPLSQL_v3-4EAA25?style=flat-square) ![.NET 8](https://img.shields.io/badge/.NET_8_Worker_Services-512BD4?style=flat-square&logo=dotnet&logoColor=white) ![Pydantic v2](https://img.shields.io/badge/Pydantic_v2-E92063?style=flat-square&logo=pydantic&logoColor=white) ![Pandas / OpenPyXL](https://img.shields.io/badge/Data_Pipelines-217346?style=flat-square&logo=microsoft-excel&logoColor=white) |
 | **DevOps & Ciclo de Vida** | ![Docker](https://img.shields.io/badge/Docker-2496ED?style=flat-square&logo=docker&logoColor=white) ![Git Flow](https://img.shields.io/badge/Git_Flow-F05032?style=flat-square&logo=git&logoColor=white) ![Redgate](https://img.shields.io/badge/Redgate-CC0000?style=flat-square) ![Linux](https://img.shields.io/badge/Linux-FCC624?style=flat-square&logo=linux&logoColor=black) |
 
 </div>
@@ -87,42 +95,49 @@ Combino una sólida especialización en **Ingeniería de Bases de Datos (Oracle 
 <br>
 
 ### 👨‍💻 Executive Summary
-Systems Engineer based in **Colombia** with **4+ years of experience** designing, optimizing, and scaling mission-critical systems and high-volume data architectures. Specialized in combining **Data Engineering (Oracle PL/SQL, SQL Server, CBO Tuning)** with **Backend Development (.NET 8, Python)**—implementing advanced patterns such as **CQRS**, **Transactional Outbox**, and **Change Data Capture (CDC)** to resolve performance bottlenecks and ensure data integrity in high-concurrency environments.
+Systems Engineer based in **Colombia** with **4+ years of experience** designing, optimizing, and securing mission-critical transactional platforms and high-volume data architectures[cite: 1]. Specialized in connecting deep **Database Engineering (Oracle PL/SQL, SQL Server, CBO Tuning, utPLSQL)**[cite: 1, 2, 6] with **Backend Architecture (.NET 8, Python)**[cite: 1, 3, 5]—applying enterprise patterns like **CQRS**, **Transactional Outbox**, and **Change Data Capture (CDC)** to resolve severe I/O bottlenecks and maintain strict ACID compliance under heavy concurrency[cite: 3, 5, 6].
 
 ### 🛠️ Core Services & Technical Capabilities
-* **⚡ SQL Tuning & Database Architecture:** Execution plan diagnostics (`DBMS_XPLAN`), CBO cost optimization, table partitioning, covering indexes, and vectorized PL/SQL batch processing (`BULK COLLECT` / `FORALL`).
-* **🔄 Event-Driven & Decoupled Data Systems:** Protecting OLTP transaction engines from analytical query overhead using **CQRS**, **Transactional Outbox**, **RabbitMQ**, and **MongoDB** read projections.
-* **🐍 Python Data Pipelines & CDC Automation:** Automated extraction and transformation pipelines using **Pydantic v2** validation, change data tracking for historical state auditing, and notification workflows (HTML/Excel).
-* **⚙️ Enterprise Backend (.NET 8):** Scalable Worker Services, real-time bidirectional communication with **WebSockets**, and mission-critical transactional integrations.
-* **🚀 Technical Governance & Lifecycle:** Database versioning (**Git Flow**, **Redgate**), containerized reproducibility (**Docker**), and cross-platform operations.
+* **⚡ Database Architecture & SQL Tuning:** `DBMS_XPLAN` execution diagnostics[cite: 4, 6], compound **E-S-R-O indexing (Index-Only Access)**[cite: 6], large-scale table partitioning[cite: 4], and high-performance PL/SQL PGA batch routines (`BULK COLLECT` / `FORALL ... SAVE EXCEPTIONS`)[cite: 4, 6].
+* **🧪 Database QA & Automation:** Automated unit testing suites using **utPLSQL v3**[cite: 6], I/O isolation across segregated **tablespaces**[cite: 6], and scheduled job orchestration with **`DBMS_SCHEDULER`**[cite: 6].
+* **🔄 Event-Driven & Decoupled Data Systems:** Decoupling OLTP engines from analytics via **CQRS**, **Transactional Outbox**, **RabbitMQ** topic exchanges, and **MongoDB 7.0** read projections[cite: 3].
+* **🐍 Python Pipelines & CDC Automation:** Robust data ingestion and schema validation using **Pydantic v2**[cite: 5], price mutation auditing with CDC logic, and programmatic reporting (Excel / SMTP)[cite: 5].
+* **⚙️ Enterprise Backend (.NET 8):** Scalable Worker Services[cite: 3], low-latency bidirectional protocols via **WebSockets**[cite: 1, 2], and transactional enterprise billing[cite: 1].
 
 ---
 
-### 📌 Featured Engineering Projects
+### 📌 Featured Engineering Portfolio
 
-#### 1. ⚡ [Database Performance Benchmarking & Refactoring Suite](https://github.com/DerekMazino/db-performance-benchmark)
-* **Stack:** `Oracle 23ai Free` | `PL/SQL` | `CBO Tuning` | `Interval Partitioning` | `Docker`
-* **Key Achievements on a 10M-row Financial Ledger:**
-  * **Sargability & Covering Indexes:** Slashed transactional query latency from **13.60s to 0.01s (1,360x faster)** and reduced logical RAM I/O by **99.95%** (157,000 down to 67 blocks).
-  * **Vectorized PL/SQL Batch Processing:** Transformed row-by-row cursors to `BULK COLLECT LIMIT 5000` + `FORALL ... SAVE EXCEPTIONS`, delivering **2.39x throughput** and cutting context switches by **99.98%**.
-  * **Physical Partition Pruning:** Deployed monthly `INTERVAL` partitioning, speeding analytical reports by **9.4x (10.56s to 1.12s)** and cutting disk I/O by **91.3%**.
-
-#### 2. 🔄 [Event-Driven Read Model Sync (CQRS & Transactional Outbox)](https://github.com/DerekMazino/event-driven-cqrs-sync)
-* **Stack:** `Oracle 23ai` | `.NET 8 Worker Services` | `RabbitMQ (AMQP)` | `MongoDB 7.0` | `Docker`
+#### 1. 💳 [Core Settlement & Cashback Engine (Oracle 23ai)](https://github.com/DerekMazino/fintech-settlement-engine)
+* **Stack:** `Oracle 23ai Free` | `PL/SQL` | `utPLSQL v3` | `CBO Tuning (E-S-R-O)` | `DBMS_SCHEDULER` | `Docker`[cite: 6]
 * **Key Achievements:**
-  * **Non-Blocking Delivery:** Guaranteed *at-least-once* event delivery with the **Transactional Outbox** pattern inside ACID stored procedures and concurrent `.NET 8` pollers (`SELECT FOR UPDATE SKIP LOCKED`).
-  * **Sub-Millisecond Read Projections:** Idempotent `.NET 8` projections converting 3NF relational data (50k loans, 600k schedules) to denormalized **MongoDB** read documents.
-  * **Empirical Gain:** Reduced query latency by **>99% (850ms down to 1–5ms)**, fully isolating the OLTP core from read locks.
+  * **CBO Index-Only Access:** Designed `idx_trx_riesgos_esro` following the **E-S-R-O** rule[cite: 6]. Reached direct `INDEX RANGE SCAN` with zero table lookups (`TABLE ACCESS BY INDEX ROWID: 0`) and executed in **0.01 s with 67 buffers**, avoiding intermediate sorting via `SORT GROUP BY NOSORT`[cite: 6].
+  * **Resilient In-Memory Batching:** Extracted in batches of 1,000 via explicit cursors into PGA memory[cite: 6]. Implemented atomic bulk error logging for `ORA-24381` and segregated `LIQUIDADO` vs `RECHAZADO` records in a single pass using `SQL%BULK_ROWCOUNT`[cite: 6].
+  * **Storage & Testing:** Segmented storage across dedicated tablespaces (`TS_FINTECH_DATA` vs `TS_FINTECH_IDX`)[cite: 6], recurring batch scheduling via `DBMS_SCHEDULER`[cite: 6], and a test suite in **utPLSQL v3**[cite: 6].
 
-#### 3. 🏠 [Real Estate Investment Monitor & CDC Engine](https://github.com/DerekMazino/real-estate-monitor)
-* **Stack:** `Python 3.11+` | `Pydantic v2` | `SQLite` | `CDC Pattern` | `SMTP / Excel`
+#### 2. ⚡ [Database Performance Benchmarking & Refactoring Suite](https://github.com/DerekMazino/db-performance-benchmark)
+* **Stack:** `Oracle 23ai Free` | `PL/SQL` | `CBO Tuning` | `Interval Partitioning` | `Docker`[cite: 4]
+* **Key Achievements (10M-row Ledger):**
+  * **Sargability & Covering Indexes:** Reduced query latency from **13.60 s to 0.01 s (1,360x faster)** and cut RAM logical I/O by **99.95%** (157,000 to 67 blocks)[cite: 4].
+  * **Vectorized PL/SQL Batching:** Slashed context switching by **99.98%** using `BULK COLLECT LIMIT 5000` + `FORALL ... SAVE EXCEPTIONS` (delivering **2.39x throughput**)[cite: 4].
+  * **Physical Partition Pruning:** Deployed monthly `INTERVAL` partitioning, speeding queries by **9.4x (10.56 s to 1.12 s)** with **91.3% less segment I/O**[cite: 4].
+
+#### 3. 🔄 [Event-Driven Read Model Sync (CQRS & Transactional Outbox)](https://github.com/DerekMazino/event-driven-cqrs-sync)
+* **Stack:** `Oracle 23ai` | `.NET 8 Worker Services` | `RabbitMQ` | `MongoDB 7.0` | `Docker`[cite: 3]
 * **Key Achievements:**
-  * **CDC Engine for Price Tracking:** Detects new listing arrivals and records historical price cuts with discount percentages in `price_history`.
-  * **Strict Data Engineering:** Multi-portal ingestion (Finca Raíz, MetroCuadrado, Ciencuadras) validated and normalized through **Pydantic v2** schemas with deduplication.
-  * **Decoupled Notification Dispatch:** Automated generation of hyperlinked Excel spreadsheets and scheduled HTML alerts via SMTP.
+  * **ACID Event Delivery:** Guaranteed *at-least-once* publishing with the **Transactional Outbox** pattern and non-blocking `.NET 8` pollers (`SELECT FOR UPDATE SKIP LOCKED`)[cite: 3].
+  * **Sub-Millisecond Projections:** Idempotent workers syncing 3NF relations (50k loans, 600k quotas) to **MongoDB 7.0**[cite: 3].
+  * **Telemetry Gain:** Slashed read latency from **850 ms down to 1–5 ms (>99% drop)**, isolating the OLTP core from read locks[cite: 3].
 
-#### 4. 🚧 Upcoming Project: Business-Agnostic POS Engine *(In Analysis & Planning)*
-* **Vision & Scope:** Multi-niche Point of Sale (POS) architecture engineered with clean boundary separation and dynamic metadata schemas so billing, inventory, and sync capabilities adapt to retail, hospitality, or service sectors without modifying core transaction code.
+#### 4. 🏠 [Real Estate Investment Monitor & CDC Engine](https://github.com/DerekMazino/real-estate-monitor)
+* **Stack:** `Python 3.11+` | `Pydantic v2` | `SQLite` | `CDC Pattern` | `SMTP / Excel`[cite: 5]
+* **Key Achievements:**
+  * **CDC Price Drop Engine:** Automated change detection capturing new listings and price drops with historical discount logging[cite: 5].
+  * **Typed Normalization:** Multi-portal schema mapping and deduplication enforced with **Pydantic v2**[cite: 5].
+  * **Decoupled Reporting:** Automated structured Excel spreadsheet generation and responsive HTML email alerts[cite: 5].
+
+#### 5. 🚧 Upcoming Project: Business-Agnostic POS Engine *(Architecture & Planning)*
+* **Vision:** Modular, multi-niche Point of Sale engine engineered with decoupled domain boundaries and metadata schemes to adapt billing, taxes, and inventory across sectors without altering core code.
 
 </details>
 
